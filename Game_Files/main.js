@@ -1,16 +1,25 @@
 
-
-
 $testCat = $(".test-cat");
 
-$testCat.animate({
-	right: "40%",
-	top: "40%"
-}, 6000, function() {
-	youdied();
+
+// setInterval(function() {
+// 	$testCat.clone().appendTo($('body'));
+// 	$testCat = $('test-cat');
+// 	animateCat();
+// }, 600);
+
+function animateCat () {
+	$testCat.animate({
+		right: "40%",
+		top: "40%"
+	}, 6000, function() {
+		youdied();
 });
+}
 
+animateCat();
 
+//window.setInterval
 
 // THIS SECTION RECORDS KEYPRESSES AND REMOVES FIRST STRING MEMBER
 // OF THE PHRASE BOX
@@ -43,3 +52,7 @@ function youdied() {
 	var body = $('body');
 	body.append('<h1 class="game-over"> YOU DIED </h1>');
 }
+
+function catSpawner(arg) {
+
+};

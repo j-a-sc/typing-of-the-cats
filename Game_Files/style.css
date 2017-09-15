@@ -26,6 +26,12 @@ body {
 	right: 0;
 }
 
+.new-cat {
+	background-color: yellow;
+	height: 100px;
+	width: 100px;
+}
+
 .cat-phrase {
 	font-family: arial;
 	background-color: lightgrey;
