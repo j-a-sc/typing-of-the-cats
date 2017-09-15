@@ -8,8 +8,8 @@
 get to you and you lose.
 	- cats js animations moving towards middle of screen, keyword submitted character by character by form submission, once completed animation stopped. if animation not stopped by a certain time (ie hits player), game end/life loss will trigger.
 - cats gradually get faster through the game OR phrases gradually get longer
-	phrases - at certain preallocated gametimes array of phrases used switched to array with more difficult phrases inside
-	faster - at preallocated gametimes variables changed so animations move more quickly and player loss is determined in less time.
+	- phrases - at certain preallocated gametimes array of phrases used switched to array with more difficult phrases inside
+	- faster - at preallocated gametimes variables changed so animations move more quickly and player loss is determined in less time.
 
 ### Additional Features ###
 - Robo lives system
@@ -27,13 +27,13 @@ get to you and you lose.
 
 
 
-## ROBOTS ##
+## ROBOT ESACPE ##
 
 ### MVP ###
 
 - Robot that can navigate a maze by user programming
-	-robot moves in animations, position stored in variables and disallowed positions stored in matrix and checked against whenever robot tries to move
-	-using eval() user text functions such as moveup(1), wait(1) are converted to js and used in the program to move the robot. User has to construct a basic bit of code to move the robot around the maze using commands and if statements and get to the end 
+	- robot moves in animations, position stored in variables and disallowed positions stored in matrix and checked against whenever robot tries to move
+	- using eval() user text functions such as moveup(1), wait(1) are converted to js and used in the program to move the robot. User has to construct a basic bit of code to move the robot around the maze using commands and if statements and get to the end 
 
 
 ### Additional Features ###
@@ -45,7 +45,7 @@ get to you and you lose.
 - Enemies
 	- traps that robot can fall into and lose a life, enemies that move around maze and check if their position matrix is the same as robot every interval.
 - html css
-	-polish with sounds on various events, eg robot death, map complete, 
+	- polish with sounds on various events, eg robot death, map complete, 
 - two player coop, second robot that can help by doing tasks such as standing on buttons allowing other robot to escape.
 	- replicate code written so far for second robot and add new positional matrix features such as buttons and gates.
 
