@@ -6,16 +6,19 @@
 - Instruction screen 
 - you are a robot in the middle of the screen, enemies are cats, type phrases to defeat the cats before they
 get to you and you lose.
-	- cats js animations moving towards middle of screen, keyword submitted character by character by form submission, once completed animation stopped. if animation not stopped by a certain time (ie hits player), game end/life loss will trigger.
+	- cats js animations moving towards middle of screen, phrase picked randomly from array of phrases and stored as html in box above cat. 
+	- keyboard events with keyCode to obtain user input. Input is checked against first character of all the phrase strings on screen and if it matches removes it. phrase box element checked for being empty, once empty animation .stop(). if animation not stopped by a certain time (ie hits player), game end/life loss will trigger.
+
+
+### Additional Features ###
+
 - cats gradually get faster through the game OR phrases gradually get longer
 	- phrases - at certain preallocated gametimes array of phrases used switched to array with more difficult phrases inside
 	- faster - at preallocated gametimes variables changed so animations move more quickly and player loss is determined in less time.
-
-### Additional Features ###
 - Robo lives system
 	- life counter added
-- BOSS CAT, large cat that moves slowly onto screen, typing phrase is a paragraph from the cat page of wikipedia;
-	- made as new level with one bespoke cat with increased size and difficulty
+- BOSS CAT, large cat that moves slowly onto screen, typing phrase is a paragraph from the cat page of wikipedia
+	- made as new level with one bespoke cat with increased size and difficulty, spawn tied to gametime
 - Cat sounds whenever you defeat a feline foe, cool robot music the rest of the time
 	- HTML5 sound tied to events
 - more animations
@@ -32,14 +35,15 @@ get to you and you lose.
 ### MVP ###
 
 - Robot that can navigate a maze by user programming
-	- robot moves in animations, position stored in variables and disallowed positions stored in matrix and checked against whenever robot tries to move
-	- using eval() user text functions such as moveup(1), wait(1) are converted to js and used in the program to move the robot. User has to construct a basic bit of code to move the robot around the maze using commands and if statements and get to the end 
+	- robot moves in animations, x y position stored in variables and disallowed positions stored in matrix and checked against whenever robot tries to move them. If robot tries to move to disallowed square animation cancelled and xy position set back to prior move
+	- using eval() user text functions such as moveup(1), wait(1) are converted to js and used in the program to move the robot. User has to construct a basic bit of code to move the robot around the maze using commands and if statements and get to the end.
+	- one user command executed per tick,  
 
 
 ### Additional Features ###
 
 - maze has fog of war
-	- robot position used to black out squares a certain distance away
+	- robot xy position used to black out squares with xy values within a certain distance
 - multiple levels, different challenges
 	- shape of levels a challenge, add environmental features that turn on and off each tick
 - Enemies
