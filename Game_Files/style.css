@@ -1,10 +1,17 @@
+body {
+	background-image: url("https://opengameart.org/sites/default/files/space%20bg.png");
+	margin: 0;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
 .player-model {
 	background-image: url("Images/Blue-Robot.png");
 	height: 200px;
 	width: 200px;
 	background-size: 200px 200px;
 	position: absolute;
-	top: 50%;
+	top: 55%;
 	left: 50%;
 	margin: -100px -100px;
 	background-repeat: no-repeat;
@@ -27,9 +34,13 @@
 	text-align: center;
 }
 
+.phrase-holder {
+	height: 50px;
+}
+
 .cat-image {
-	background-image: url("Images/cat_transparent.png");
-	background-size: 200px 150px;
+	background-image: url("https://cdn.pixabay.com/photo/2013/07/12/19/22/cat-154642_960_720.png");
+	background-size: 100% 100%;
 	height: 150px;
 }
 

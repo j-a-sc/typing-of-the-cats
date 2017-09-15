@@ -29,8 +29,11 @@ $(document).keydown(function(event) {
   		$(".cat-phrase").css({
   			"visibility": "hidden"
   		});
-  		$testCat.stop();
-  		$testCat.fadeOut();
+ 		$testCat.stop();
+ 		$(".cat-image").css ({
+ 			"background-image": "url('http://www.pngmart.com/files/4/Atomic-Explosion-PNG-Photos.png')"
+ 		})
+  		$testCat.fadeOut(2000);
   	}
 });
 
