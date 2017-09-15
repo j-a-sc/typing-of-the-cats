@@ -21,10 +21,30 @@
 
 .cat-phrase {
 	font-family: arial;
+	background-color: lightgrey;
+	border: 2px black solid;
+	border-radius: 10px;
+	text-align: center;
 }
 
 .cat-image {
 	background-image: url("Images/cat_transparent.png");
 	background-size: 200px 150px;
 	height: 150px;
+}
+
+.game-over {
+	color: red;
+	position: absolute;
+	font-family:impact;
+	font-size:130px;
+	top:50%;
+	left:50%;
+	margin: -100px -250px;
+	background-color: yellow;
+	border: 10px black solid;
+	border-radius: 100px;
+	height:200px;
+	width:500px;
+	text-align: center;
 }

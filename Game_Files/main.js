@@ -6,21 +6,37 @@ $testCat = $(".test-cat");
 $testCat.animate({
 	right: "40%",
 	top: "40%"
-}, 10000, function() {});
+}, 6000, function() {
+	youdied();
+});
 
+
+
+// THIS SECTION RECORDS KEYPRESSES AND REMOVES FIRST STRING MEMBER
+// OF THE PHRASE BOX
 $(document).keydown(function(event) {
   	$catPhrase = $(".cat-phrase").html();
 	var keypress = String.fromCharCode(event.keyCode);
 
-	console.log(keypress);
-
   	if (keypress === $catPhrase.charAt(0) ) {
- 		console.log("CAT MATCH DETECTED");
+ 	
   		$alteredPhrase = $catPhrase.substring(1, $catPhrase.length);
- 		console.log($alteredPhrase);
   		$(".cat-phrase").html($alteredPhrase);
   	}
- 	
-  	
 
+
+  	if ($(".cat-phrase").html() === "") {
+  		$(".cat-phrase").css({
+  			"visibility": "hidden"
+  		});
+  		$testCat.stop();
+  		$testCat.fadeOut();
+  	}
 });
+
+
+//FUNCTION TO DISPLAY IF CAT REACHES YOU
+function youdied() {
+	var body = $('body');
+	body.append('<h1 class="game-over"> YOU DIED </h1>');
+}
