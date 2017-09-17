@@ -1,49 +1,48 @@
+var $topRightCat = $(".top-right-cat");
+var $topLeftCat = $(".top-left-cat");
 
-$testCat = $(".test-cat");
+
+setInterval( function () {spawnCat($topRightCat)}, 6000);
 
 
-// setInterval(function() {
-// 	$testCat.clone().appendTo($('body'));
-// 	$testCat = $('test-cat');
-// 	animateCat();
-// }, 600);
 
-function animateCat () {
-	$testCat.animate({
-		right: "40%",
-		top: "40%"
-	}, 6000, function() {
-		youdied();
-});
+
+function spawnCat($template) {
+	$template.clone().appendTo($('body'))
+		.removeClass("invisible")
+		.addClass("active-cat")
+		.animate({ right: "40%", top: "40%"}, 
+		         { duration: 6000, complete: youdied });
 }
-
-animateCat();
-
-//window.setInterval
 
 // THIS SECTION RECORDS KEYPRESSES AND REMOVES FIRST STRING MEMBER
 // OF THE PHRASE BOX
+
 $(document).keydown(function(event) {
-  	$catPhrase = $(".cat-phrase").html();
+
 	var keypress = String.fromCharCode(event.keyCode);
+  	$(".active-cat .cat-phrase").each(function (_, phrase) {
+  		var $phrase = $(phrase);
+  		console.log($phrase);
+  		var string = $phrase.text();
+  		var $cat = $phrase.parent().parent();
+		if (keypress === string.charAt(0) )
+	  		$phrase.text(string = string.substring(1));
 
-  	if (keypress === $catPhrase.charAt(0) ) {
- 	
-  		$alteredPhrase = $catPhrase.substring(1, $catPhrase.length);
-  		$(".cat-phrase").html($alteredPhrase);
-  	}
+	  	if (string === "") {
+	  		$phrase.css({
+	  			"visibility": "hidden"
+	  		});
+	 		$cat.stop();
+	 		$cat.find(".cat-image").css ({
+	 			"background-image": "url('Images/explosion.png')"
+	 		})
+	  		$cat.fadeOut(2000, function () {
+	  			$cat.remove();
+	  		});
 
-
-  	if ($(".cat-phrase").html() === "") {
-  		$(".cat-phrase").css({
-  			"visibility": "hidden"
-  		});
- 		$testCat.stop();
- 		$(".cat-image").css ({
- 			"background-image": "url('http://www.pngmart.com/files/4/Atomic-Explosion-PNG-Photos.png')"
- 		})
-  		$testCat.fadeOut(2000);
-  	}
+	  	}
+  	});
 });
 
 
@@ -52,7 +51,3 @@ function youdied() {
 	var body = $('body');
 	body.append('<h1 class="game-over"> YOU DIED </h1>');
 }
-
-function catSpawner(arg) {
-
-};

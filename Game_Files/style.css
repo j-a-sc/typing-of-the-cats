@@ -1,5 +1,5 @@
 body {
-	background-image: url("https://opengameart.org/sites/default/files/space%20bg.png");
+	background-image: url("Images/spacebg.png");
 	margin: 0;
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -18,14 +18,23 @@ body {
 	
 }
 
-.test-cat {
+.cat {
 	height: 200px;
 	width: 200px;
 	position: absolute;
 	top: 0;
-	right: 0;
 }
 
+.top-right-cat {
+	right: 0;
+}
+.top-left-cat {
+	left: 0;
+}
+
+.invisible {
+	visibility: hidden;
+}
 .new-cat {
 	background-color: yellow;
 	height: 100px;
@@ -45,7 +54,7 @@ body {
 }
 
 .cat-image {
-	background-image: url("https://cdn.pixabay.com/photo/2013/07/12/19/22/cat-154642_960_720.png");
+	background-image: url("Images/standard_cat.png");
 	background-size: 100% 100%;
 	height: 150px;
 }
