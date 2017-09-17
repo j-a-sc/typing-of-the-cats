@@ -1,8 +1,13 @@
+// CAT TEMPLATES
+
 var $topRightCat = $(".top-right-cat");
 var $topLeftCat = $(".top-left-cat");
+var catRate = 6000;
 
-
-setInterval( function () {spawnCat($topRightCat)}, 6000);
+// THE CATS MUST FLOW
+setInterval( function () {
+	spawnCat($topRightCat)
+}, catRate);
 
 
 
@@ -50,4 +55,5 @@ $(document).keydown(function(event) {
 function youdied() {
 	var body = $('body');
 	body.append('<h1 class="game-over"> YOU DIED </h1>');
+
 }
