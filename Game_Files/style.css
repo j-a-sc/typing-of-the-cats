@@ -1,8 +1,9 @@
 body {
 	background-image: url("Images/spacebg.png");
 	margin: 0;
-	background-size: 100%;
-	background-repeat: no-repeat;
+	background-size: 100% 840px;
+	background-repeat: no-repeat;\
+	overflow: hidden;
 }
 
 .player-model {
@@ -11,7 +12,7 @@ body {
 	width: 200px;
 	background-size: 200px 200px;
 	position: absolute;
-	top: 55%;
+	top: 63%;
 	left: 50%;
 	margin: -100px -100px;
 	background-repeat: no-repeat;
@@ -20,14 +21,62 @@ body {
 }
 
 .splash-screen {
-	background-color: fuchsia;
-	height: 900px;
+	background-image: url("Images/splashbg.jpg");
+	height: 840px;
 	width: 100%;
 	z-index: 1000;
 	position: absolute;
+	overflow: hidden;
+}
+
+.main-title {
+	font-family: 'Audiowide';
+	font-weight: 900;
+	text-align: center;
+	font-size: 80px;
+	color: white;
+	text-shadow: -3px 0 maroon, 3px 0 maroon, 3px 0 maroon, -3px 0 maroon;
+	background-color: midnightblue;
+	width: 1100px;
+	border-radius: 50px;
+	border: 5px black solid;
+	margin: 0 auto;
+	top: 50px;
+	position: relative;
+
+}
+
+.instructions-box {
+	height: 400px;
+	width: 1000px;
+	position: relative;
+	margin: 0 auto;
+	top: 100px;
+	text-shadow: -5px 0 midnightblue, 5px 0 midnightblue, 5px 0 midnightblue, -5px 0 midnightblue;
+}
+
+.instructions {
+	color: white;
+	font-family: 'Audiowide';
+	font-size: 25px;
 }
 
 .start-button {
+	background-color: navy;
+	border: black 5px solid;
+	border-radius: 50px;
+	height: 60px;
+	padding: 15px 0 19px 0;
+	width: 250px;
+	position: relative;
+	margin: 0 auto;
+	
+	top: 55px;
+	font-family: 'Audiowide';
+	color: white;
+	font-size: 55px;
+	text-align: center;
+	vertical-align: middle;
 
 }
 
