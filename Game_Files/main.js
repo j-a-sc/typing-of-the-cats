@@ -2,6 +2,7 @@
 var breakvar = false;
 var $startButton = $(".start-button");
 var $splashScreen = $(".splash-screen");
+var totalSpawnNo = 0;
 
 // CAT TEMPLATES
 var $topRightCat = $(".top-right-cat");
@@ -113,6 +114,10 @@ function timer () {
 			var catSpawnNo = (Math.floor(Math.random()*8));
 			console.log(catSpawnNo);
 			spawnCat($spawnArray[catSpawnNo]);
+			totalSpawnNo++;
+			if (totalSpawnNo > 5) {
+				catRate = 100;
+			}
 			timer();
 		}
 	}, catRate)
@@ -127,7 +132,7 @@ function spawnCat($template) {
 	var $activeCat = $template.clone().appendTo($('body'))
 		.removeClass("invisible").addClass("active-cat")
 		.animate({ left: "45%", top: "40%"}, 
-		         { duration: 8000, complete: youdied });		
+		         { duration: 2000, complete: youdied });		
 		
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
@@ -152,19 +157,22 @@ function catDie(phrase, cat) {
 //FUNCTION TO DISPLAY IF CAT REACHES YOU
 
 function youdied() {
-	var body = $('body');
-	body.append('<h1 class="game-over"> YOU DIED </h1>');
+	$gameOver = $(".game-over");
+	$gameOver.addClass('visible');
+	console.log($gameOver);
 	breakvar = true;
+	$('.player-model').addClass('player-dead');
+	$playerDead = $('.player-dead');
+	$playerDead.hide().fadeIn(400).delay(500).fadeOut(4000);
 	$cat = $(".active-cat .cat-phrase").parent().parent();
 	$cat.stop().fadeOut(2000, function () {
-		cat.remove();
 	});
 
 }
 
 $startButton.on("click", function () {
 	$splashScreen.slideUp(2000, function () {
-		$splashScreen.remove();
+//		$splashScreen.remove();
 		startGame();
 	})
 });
@@ -188,3 +196,13 @@ $(document).keydown(function(event) {
 	  	}
   	});
 });
+
+// PLAY AGAIN BUTTON
+
+$('.game-over').on('click', function (){
+	breakvar = false;
+	totalSpawnNo = 0;
+	$('.player-model').removeClass('player-dead').unHide();
+	$gameOver.removeClass('visible');
+	$splashScreen.slideDown(2000);
+})

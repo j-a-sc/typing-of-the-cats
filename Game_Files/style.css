@@ -20,6 +20,17 @@ body {
 	
 }
 
+.player-dead {
+	height: 800px;
+	width: 800px;
+	background-size: 800px 800px;
+	top: 55%;
+	left: 50%;
+	margin: -400px 0 0 -400px;
+	background-image: url("https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png");
+	/*visibility: hidden;*/
+}
+
 .splash-screen {
 	background-image: url("Images/splashbg.jpg");
 	height: 840px;
@@ -168,4 +179,14 @@ body {
 	width:500px;
 	text-align: center;
 	padding: 40px 0 0 0;
+	visibility: hidden;
+	z-index: 10000;
+}
+
+.play-again {
+	font-size: 30px;
+}
+
+.visible {
+	visibility: visible;
 }
