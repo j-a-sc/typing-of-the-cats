@@ -15,14 +15,33 @@ var $bottomMiddleCat = $(".bottom-middle-cat");
 var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
                   $bottomLeftCat, $topMiddleCat, $leftMiddleCat,
                   $rightMiddleCat, $bottomMiddleCat ];
-var catRate = 5000;
+var catRate = 2200;
 
 // PHRASE ARRAY
-var phraseArray = ["DOG","MARMOSET","MONKEY", "ELEPHANT",
-				   "BIGGEST CAT","JANE EYRE"];
+var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
+				   "DISGUISED","JANE EYRE", "Mary Shelley",
+				   "GERMANY", "MAPLE TREE", "AARDVARK", "CAT RENDERING",
+				   "SECRETLY DOG", "CENTERED DIV", "SPACE CAT", "ABACUS",
+				   "AESOP", "AFTERSHOCK", "AGGRAVATE", "ALABAMA", "ALBATROSS",
+				   "ALIBI", "ALLOSAURUS", "ANACHRONISM", "ANEMONE", "APPLESAUCE",
+				   "BANANANANADA", "BANGLES", "BARBARISM", "BEANBAG", "BEEBOOBEEBOO",
+				   "BLUEBERRY", "BLUNDER", "BOLSHEVIKISM", "BRONCHITIS", "BUREAUCRACY",
+				   "CACOPHONY", "CANTALOUPE", "CARLESSNESS", "CURIOSITY", "CARPACCIO",
+				   "CEREBELLUM", "CHAUVINISM", "CHEESECAKE", "CHRYSANTHEMUM", "CORDUROY",
+				   "CRANBERRIES", "DARLING", "DARWINISM", "DEBRA", "DERMATOLOGIST",
+				   "DERRICK", "DOCTOR", "DROOPS", "EARTHWORM", "ELECTROLYSIS",
+				   "ELOISE", "ELOQUENCE", "EMBEZZLE", "FANDANGO", "FAVOURITE",
+				   "FETTUCCINE", "FEUDALISM", "FIBERGLASS", "FILTERED", "FISHMONGER",
+				   "FLOUNDER", "FOOLISHNESS", "FORK", "FRANKFURTER", "FROGURT",
+				   "FRUSTRATION", "FUZZY", "GENTLEMAN", "GIZZARD", "GLOBEFISH",
+				   "GNOME", "GOOSEBERRY", "GOSSIPMONGER", "GRINNING", "HTML",
+				   "HALBERD", "HANKERCHIEF", "HEAVYWEIGHT", "HEDGEHOG", "HIGHWAYMAN",
+				   "HIPPOPOTAMUS", "HMMMMM", "HOLLOW", "HYDRA", "HYPOTHERMIA",
+				   "HUSTLE", "IGNITION"
 
 
 
+				   ];
 
 // GAME STARTING FUNCTION
 
@@ -46,13 +65,17 @@ function timer () {
 // CLONES TEMPLATE CAT AND PUTS NEW CAT INTO ANIMATION
 
 function spawnCat($template) {
+
 	var phraseNo = Math.floor(Math.random()*phraseArray.length);
-	$template.clone().appendTo($('body'))
+	
+	var $activeCat = $template.clone().appendTo($('body'))
 		.removeClass("invisible").addClass("active-cat")
 		.animate({ left: "45%", top: "40%"}, 
-		         { duration: 6000, complete: youdied });		
-		var $phrase = $template.find(".phrase-holder .cat-phrase");
+		         { duration: 8000, complete: youdied });		
+		
+		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
+
 }
 
 // PERFORMS CAT EXPLOSION ANIMATION AND REMOVES ELEMENT
