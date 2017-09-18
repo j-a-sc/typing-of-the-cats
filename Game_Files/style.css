@@ -22,14 +22,46 @@ body {
 	height: 200px;
 	width: 200px;
 	position: absolute;
-	top: 0;
 }
 
 .top-right-cat {
+	top: 0;
 	right: 0;
 }
+
 .top-left-cat {
+	top: 0;
 	left: 0;
+}
+
+.bottom-left-cat {
+	left: 0;
+	bottom: 0;
+}
+
+.bottom-right-cat {
+	right: 0;
+	bottom:0;
+}
+
+.top-middle-cat {
+	top: 0;
+	left: 45%;
+}
+
+.middle-left-cat {
+	top: 40%;
+	left: 0;
+}
+
+.middle-right-cat {
+	top: 40%;
+	right: 0;
+}
+
+.bottom-middle-cat {
+	bottom: 0;
+	left: 45%;
 }
 
 .invisible {
@@ -73,4 +105,5 @@ body {
 	height:200px;
 	width:500px;
 	text-align: center;
+	padding: 40px 0 0 0;
 }

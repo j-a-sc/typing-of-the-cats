@@ -2,11 +2,27 @@
 
 var $topRightCat = $(".top-right-cat");
 var $topLeftCat = $(".top-left-cat");
-var catRate = 6000;
+var $bottomRightCat = $(".bottom-right-cat");
+var $bottomLeftCat = $(".bottom-left-cat");
+var $topMiddleCat = $(".top-middle-cat");
+var $leftMiddleCat = $(".middle-left-cat");
+var $rightMiddleCat = $(".middle-right-cat");
+var $bottomMiddleCat = $(".bottom-middle-cat");
+
+var catRate = 5000;
 
 // THE CATS MUST FLOW
 setInterval( function () {
-	spawnCat($topRightCat)
+	console.log(Math.floor(Math.random*10));
+	spawnCat($topRightCat);
+	spawnCat($topLeftCat);
+	spawnCat($bottomRightCat);
+	spawnCat($bottomLeftCat);
+	spawnCat($topMiddleCat);
+	spawnCat($leftMiddleCat);
+	spawnCat($rightMiddleCat);
+	spawnCat($bottomMiddleCat);
+
 }, catRate);
 
 
@@ -16,7 +32,7 @@ function spawnCat($template) {
 	$template.clone().appendTo($('body'))
 		.removeClass("invisible")
 		.addClass("active-cat")
-		.animate({ right: "40%", top: "40%"}, 
+		.animate({ left: "45%", top: "40%"}, 
 		         { duration: 6000, complete: youdied });
 }
 
