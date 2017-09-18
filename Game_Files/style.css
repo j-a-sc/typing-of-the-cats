@@ -175,10 +175,10 @@ body {
 	background-color: yellow;
 	border: 10px black solid;
 	border-radius: 100px;
-	height:200px;
+	height:250px;
 	width:500px;
 	text-align: center;
-	padding: 40px 0 0 0;
+	padding: 20px 0 0 20px;
 	visibility: hidden;
 	z-index: 10000;
 }

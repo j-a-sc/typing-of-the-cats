@@ -163,7 +163,7 @@ function youdied() {
 	breakvar = true;
 	$('.player-model').addClass('player-dead');
 	$playerDead = $('.player-dead');
-	$playerDead.hide().fadeIn(400).delay(500).fadeOut(4000);
+	$playerDead.hide().fadeIn(700).delay(500).fadeOut(3000);
 	$cat = $(".active-cat .cat-phrase").parent().parent();
 	$cat.stop().fadeOut(2000, function () {
 	});
@@ -202,7 +202,13 @@ $(document).keydown(function(event) {
 $('.game-over').on('click', function (){
 	breakvar = false;
 	totalSpawnNo = 0;
-	$('.player-model').removeClass('player-dead').unHide();
+	$splashScreen.slideDown(2000, function (){
+		$playerDead.stop();
+		$('.player-model').removeClass('player-dead').css({
+			'display':'block',
+			'visibility':'visible',
+			'opacity': '1'
+		});		
+	});
 	$gameOver.removeClass('visible');
-	$splashScreen.slideDown(2000);
 })
