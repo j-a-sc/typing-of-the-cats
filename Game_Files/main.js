@@ -3,6 +3,7 @@ var breakvar = false;
 var $startButton = $(".start-button");
 var $splashScreen = $(".splash-screen");
 var totalSpawnNo = 0;
+var $bossBanner = $(".boss-banner");
 
 // CAT TEMPLATES
 var $topRightCat = $(".top-right-cat");
@@ -20,14 +21,14 @@ var catRate = 2200;
 
 // PHRASE ARRAY
 var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
-				   "DISGUISED","JANE EYRE", "Mary Shelley",
+				   "DISGUISED","JANE EYRE", "MARY SHELLEY",
 				   "GERMANY", "MAPLE TREE", "AARDVARK", "CAT RENDERING",
 				   "SECRETLY DOG", "CENTERED DIV", "SPACE CAT", "ABACUS",
 				   "AESOP", "AFTERSHOCK", "AGGRAVATE", "ALABAMA", "ALBATROSS",
 				   "ALIBI", "ALLOSAURUS", "ANACHRONISM", "ANEMONE", "APPLESAUCE",
 				   "BANANANANADA", "BANGLES", "BARBARISM", "BEANBAG", "BEEBOOBEEBOO",
 				   "BLUEBERRY", "BLUNDER", "BOLSHEVIKISM", "BRONCHITIS", "BUREAUCRACY",
-				   "CACOPHONY", "CANTALOUPE", "CARLESSNESS", "CURIOSITY", "CARPACCIO",
+				   "CACOPHONY", "CANTALOUPE", "CARELESSNESS", "CURIOSITY", "CARPACCIO",
 				   "CEREBELLUM", "CHAUVINISM", "CHEESECAKE", "CHRYSANTHEMUM", "CORDUROY",
 				   "CRANBERRIES", "DARLING", "DARWINISM", "DEBRA", "DERMATOLOGIST",
 				   "DERRICK", "DISCORD", "DOCTOR", "DROOPS", "EARTHWORM", "ELECTROLYSIS",
@@ -50,7 +51,7 @@ var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
 				   "NEOPHYTE", "NEPOTISM", "NEPTUNE", "NERVOUS", "NEUROLOGIST", "NEUROMANCER",
 				   "NIGHTINGALE", "NOBLE", "NOCTURNAL", "NINJA", "NOZZLE", "NOUVEAU", "NUCLEIC",
 				   "NULLIFY", "NUN", "NYLON", "OBSEQUIOUS", "OBSTINATE", "OLIGARCHY",
-				   "OLIGOSACCHARIDE", "POLYSACCHARIDE", "ONOMATOPOEIA", "OPTHEALMOLOGIST",
+				   "OLIGOSACCHARIDE", "POLYSACCHARIDE", "ONOMATOPOEIA", "OPTHALMOLOGIST",
 				   "OLIVER", "OLIVIA", "OOPS", "OOZE", "OPPOSITE", "ORGANIC", "ORNAMENT",
 				   "OUTLAW", "OXYMORON", "OYSTERS", "PALEONTOLOGY", "PANCREAS", "PANIC",
 				   "PANTALOON", "PARSIMONIOUS", "PAPRIKA", "PARADE", "PAPER", "PAPAYA",
@@ -111,13 +112,21 @@ function startGame (){
 function timer () {
 	setTimeout( function () {
 		if ( breakvar === false ) {
+			
+			if (totalSpawnNo > 5) {
+				catRate = 100;
+			}
+			if (totalSpawnNo === 1) {
+				breakvar = true;
+
+				spawnBoss();
+			} else {
 			var catSpawnNo = (Math.floor(Math.random()*8));
 			console.log(catSpawnNo);
 			spawnCat($spawnArray[catSpawnNo]);
 			totalSpawnNo++;
-			if (totalSpawnNo > 5) {
-				catRate = 100;
 			}
+
 			timer();
 		}
 	}, catRate)
@@ -132,13 +141,35 @@ function spawnCat($template) {
 	var $activeCat = $template.clone().appendTo($('body'))
 		.removeClass("invisible").addClass("active-cat")
 		.animate({ left: "45%", top: "40%"}, 
-		         { duration: 2000, complete: youdied });		
+		         { duration: 6000, complete: youdied });		
 		
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
 
 }
 
+function spawnBoss () {
+	$playerModel = $(".player-model");
+	$playerModel.animate({left: "+=500px", top: "-=100px"}, 500, function () {
+		$cat = $(".active-cat .cat-phrase").parent().parent();
+		$cat.stop().fadeOut(100);
+		console.log($bossBanner);
+		$bossBanner
+		.fadeIn(500).delay(100)
+		.fadeOut(500).delay(100)
+		.fadeIn(500).delay(100)
+		.fadeOut(500).delay(100)
+		.fadeIn(500).delay(100)
+		.fadeOut(500, function() {
+			console.log('hello boss');
+			$bossCat = $('.boss-cat');
+			$bossCat.addClass('active-cat').fadeIn(2000);
+			$('.boss-cat').animate({left: "65%"}, 12000, function(){
+				youdied();
+			})
+		})
+		})
+};
 // PERFORMS CAT EXPLOSION ANIMATION AND REMOVES ELEMENT
 
 function catDie(phrase, cat) {
@@ -147,6 +178,9 @@ function catDie(phrase, cat) {
 	  		});
 	 		cat.stop();
 	 		cat.find(".cat-image").css ({
+	 			"background-image": "url('Images/explosion.png')"
+	 		})
+	 		cat.find(".boss-image").css ({
 	 			"background-image": "url('Images/explosion.png')"
 	 		})
 	  		cat.fadeOut(2000, function () {
@@ -172,7 +206,6 @@ function youdied() {
 
 $startButton.on("click", function () {
 	$splashScreen.slideUp(2000, function () {
-//		$splashScreen.remove();
 		startGame();
 	})
 });
@@ -211,4 +244,4 @@ $('.game-over').on('click', function (){
 		});		
 	});
 	$gameOver.removeClass('visible');
-})
+});

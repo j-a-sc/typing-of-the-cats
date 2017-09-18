@@ -158,6 +158,14 @@ body {
 	height: 50px;
 }
 
+.boss-phrase-holder {
+	height:150px;
+	position: relative;
+	top: 50px;
+	z-index: 100000;
+
+}
+
 .cat-image {
 	background-image: url("Images/standard_cat.png");
 	background-size: 100% 100%;
@@ -189,4 +197,32 @@ body {
 
 .visible {
 	visibility: visible;
+}
+
+.boss-banner {
+	display: none;
+	color: red;
+	font-size: 90px;
+	font-family: 'Frijole';
+	text-align: center;
+	position: relative;
+	top: 100px;
+	font-weight: 200;
+}
+
+.boss-cat {
+	height: 700px;
+	width: 500px;
+	position: absolute;
+	top: 0%;
+	left: 0px;
+	display:none;
+}
+
+.boss-image {
+	background-image: url('https://www.spreadshirt.ie/image-server/v1/mp/designs/16331418,width=178,height=178/evil-cat.png');
+	height: 500px;
+	width: 500px;
+	background-size: 500px 500px;
+
 }
