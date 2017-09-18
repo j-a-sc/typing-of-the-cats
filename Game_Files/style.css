@@ -15,7 +15,20 @@ body {
 	left: 50%;
 	margin: -100px -100px;
 	background-repeat: no-repeat;
+	z-index: 0;
 	
+}
+
+.splash-screen {
+	background-color: fuchsia;
+	height: 900px;
+	width: 100%;
+	z-index: 1000;
+	position: absolute;
+}
+
+.start-button {
+
 }
 
 .cat {

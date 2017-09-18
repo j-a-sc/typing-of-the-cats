@@ -1,3 +1,6 @@
+var breakvar = false;
+var $startButton = $(".start-button");
+var $splashScreen = $(".splash-screen");
 // CAT TEMPLATES
 
 var $topRightCat = $(".top-right-cat");
@@ -8,25 +11,35 @@ var $topMiddleCat = $(".top-middle-cat");
 var $leftMiddleCat = $(".middle-left-cat");
 var $rightMiddleCat = $(".middle-right-cat");
 var $bottomMiddleCat = $(".bottom-middle-cat");
+var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
+                  $bottomLeftCat, $topMiddleCat, $leftMiddleCat,
+                  $rightMiddleCat, $bottomMiddleCat ]
 
-var catRate = 5000;
+var catRate = 500;
 
 // THE CATS MUST FLOW
-setInterval( function () {
-	console.log(Math.floor(Math.random*10));
-	spawnCat($topRightCat);
-	spawnCat($topLeftCat);
-	spawnCat($bottomRightCat);
-	spawnCat($bottomLeftCat);
-	spawnCat($topMiddleCat);
-	spawnCat($leftMiddleCat);
-	spawnCat($rightMiddleCat);
-	spawnCat($bottomMiddleCat);
 
-}, catRate);
+function timer () {
+	setTimeout( function () {
+		if ( breakvar === false ) {
+			var catSpawnNo = (Math.floor(Math.random()*8));
+			console.log(catSpawnNo);
+			spawnCat($spawnArray[catSpawnNo]);
+			timer();
+		}
+	}, catRate)
+};
 
+function startGame (){
+	timer();
+};
 
-
+$startButton.on("click", function () {
+	$splashScreen.fadeOut(2000, function () {
+		$splashScreen.remove();
+		startGame();
+	})
+});
 
 function spawnCat($template) {
 	$template.clone().appendTo($('body'))
@@ -51,25 +64,32 @@ $(document).keydown(function(event) {
 	  		$phrase.text(string = string.substring(1));
 
 	  	if (string === "") {
-	  		$phrase.css({
-	  			"visibility": "hidden"
-	  		});
-	 		$cat.stop();
-	 		$cat.find(".cat-image").css ({
-	 			"background-image": "url('Images/explosion.png')"
-	 		})
-	  		$cat.fadeOut(2000, function () {
-	  			$cat.remove();
-	  		});
-
+	  		catDie($phrase, $cat);
 	  	}
   	});
 });
 
+function catDie(phrase, cat) {
+	phrase.css({
+	  			"visibility": "hidden"
+	  		});
+	 		cat.stop();
+	 		cat.find(".cat-image").css ({
+	 			"background-image": "url('Images/explosion.png')"
+	 		})
+	  		cat.fadeOut(2000, function () {
+	  			cat.remove();
+	  		});
+}
 
 //FUNCTION TO DISPLAY IF CAT REACHES YOU
 function youdied() {
 	var body = $('body');
 	body.append('<h1 class="game-over"> YOU DIED </h1>');
+	breakvar = true;
+	$cat = $(".active-cat .cat-phrase").parent().parent();
+	$cat.stop().fadeOut(2000, function () {
+		cat.remove();
+	});
 
 }
