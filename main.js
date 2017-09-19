@@ -21,7 +21,7 @@ var $bottomMiddleCat = $(".bottom-middle-cat");
 var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
                   $bottomLeftCat, $topMiddleCat, $leftMiddleCat,
                   $rightMiddleCat, $bottomMiddleCat ];
-var catRate = 2200;
+var catRate = 2400;
 
 // PHRASE ARRAY
 var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
@@ -118,14 +118,14 @@ function timer () {
 		if ( breakvar === false ) {
 			
 			if (totalSpawnNo >= 5)
-				catRate = 2100;
+				catRate = 2200;
 			if (totalSpawnNo >= 10)
-				catRate = 1900;
+				catRate = 2100;
 			if (totalSpawnNo >= 15)
-				catRate = 1700;
+				catRate = 2000;
 			if (totalSpawnNo >= 20)
-				catRate = 1500;
-			if (totalSpawnNo >= 25)
+				catRate = 1900;
+			if (totalSpawnNo >= 30)
 				catRate = 200;
 			if (totalSpawnNo === 50) {
 				breakvar = true;
@@ -185,7 +185,7 @@ function spawnBoss () {
 			$('.life-counter').fadeOut(1000);
 			$bossCat = $('.boss-cat');
 			$bossCat.addClass('active-cat').fadeIn(2000);
-			$('.boss-cat').animate({left: "65%"}, 96000, function(){
+			$('.boss-cat').animate({left: "65%"}, 18000, function(){
 				youdied();
 			})
 		})
