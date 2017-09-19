@@ -87,7 +87,7 @@ var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
 				   "UFO", "USA", "UGH", "UKELELE", "UMBRELLAS", "UNDERDOG", "URANIUM", "UNPLEASANT",
 				   "UNSHAKEN", "UNWORTHY", "UPSTART", "VACANCIES", "VAGABOND", "VAGUE", "VAMPIRE",
 				   "VANILLA", "VARNISH", "VEGETABLE", "VEGETARIANS", "VELOCIRAPTOR", "VETERINARIAN",
-				   "VICTIM", "VICTORIA", "VENUS", "VENEZUELA", "VLAIDIMIR", "VITAMINS", "VOCIFEROUSLY",
+				   "VICTIM", "VICTORIA", "VENUS", "VENEZUELA", "VLADIMIR", "VITAMINS", "VOCIFEROUSLY",
 				   "VORACIOUSLY", "VOGUE", "VOLCANO", "WACKO", "WAFFLES", "WALLABIES", "WALRUSES",
 				   "WALTZ", "WASABI", "WENSLEYDALE", "WEAKLING", "WEIRDO", "BIRMINGHAM", "WHIPLASH",
 				   "WILLIAM", "WIFE", "WILLOW", "WITHERED", "WOOPITYDOO", "WRIGGLE", "WUSSES",
@@ -113,12 +113,18 @@ function timer () {
 	setTimeout( function () {
 		if ( breakvar === false ) {
 			
-			if (totalSpawnNo > 5) {
-				catRate = 100;
-			}
+			if (totalSpawnNo >= 5)
+				catRate = 2100;
+			if (totalSpawnNo >= 10)
+				catRate = 1900;
+			if (totalSpawnNo >= 15)
+				catRate = 1700;
+			if (totalSpawnNo >= 20)
+				catRate = 1500;
+			if (totalSpawnNo >= 25)
+				catRate = 200;
 			if (totalSpawnNo === 1) {
 				breakvar = true;
-
 				spawnBoss();
 			} else {
 			var catSpawnNo = (Math.floor(Math.random()*8));
@@ -141,7 +147,7 @@ function spawnCat($template) {
 	var $activeCat = $template.clone().appendTo($('body'))
 		.removeClass("invisible").addClass("active-cat")
 		.animate({ left: "45%", top: "40%"}, 
-		         { duration: 6000, complete: youdied });		
+		         { duration: 10000, complete: youdied });		
 		
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
@@ -161,10 +167,9 @@ function spawnBoss () {
 		.fadeOut(500).delay(100)
 		.fadeIn(500).delay(100)
 		.fadeOut(500, function() {
-			console.log('hello boss');
 			$bossCat = $('.boss-cat');
 			$bossCat.addClass('active-cat').fadeIn(2000);
-			$('.boss-cat').animate({left: "65%"}, 12000, function(){
+			$('.boss-cat').animate({left: "65%"}, 96000, function(){
 				youdied();
 			})
 		})
@@ -177,6 +182,9 @@ function catDie(phrase, cat) {
 	  			"visibility": "hidden"
 	  		});
 	 		cat.stop();
+	 		if (cat.hasClass("boss-cat")) {
+	 			youWin();
+	 		}
 	 		cat.find(".cat-image").css ({
 	 			"background-image": "url('Images/explosion.png')"
 	 		})
@@ -245,3 +253,18 @@ $('.game-over').on('click', function (){
 	});
 	$gameOver.removeClass('visible');
 });
+
+// WIN GAME
+
+function youWin() {
+	$(".main-title").html("Well Done!");
+	$(".instructions").html("Thanks to your heroic efforts Boss cat has been defeated! <br/><br/>"
+		+ "With the tyranny of Boss cat at an end, his cute yet deadly legions are scattered to the winds "
+		+ "and robots throughout the galaxy can live in peace once more, without the constant threat of "
+		+ "the pan-galactic feline war machine <br/><br/>"
+		+ "Congratulations hero, and thank you for playing!");
+	$(".start-button").hide();
+	$(".main-title").addClass("gold");
+	$splashScreen.slideDown(4000);
+	
+}

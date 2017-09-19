@@ -226,3 +226,11 @@ body {
 	background-size: 500px 500px;
 
 }
+
+.gold {
+	background-image : url("Images/gold.jpg");
+}
+
+.red {
+	color: white;
+}
