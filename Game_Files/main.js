@@ -4,6 +4,10 @@ var $startButton = $(".start-button");
 var $splashScreen = $(".splash-screen");
 var totalSpawnNo = 0;
 var $bossBanner = $(".boss-banner");
+var lives = 3;
+var $lifeOne = $("#1");
+var $lifeTwo = $("#2");
+var $lifeThree = $("#3");
 
 // CAT TEMPLATES
 var $topRightCat = $(".top-right-cat");
@@ -123,12 +127,11 @@ function timer () {
 				catRate = 1500;
 			if (totalSpawnNo >= 25)
 				catRate = 200;
-			if (totalSpawnNo === 1) {
+			if (totalSpawnNo === 50) {
 				breakvar = true;
 				spawnBoss();
 			} else {
 			var catSpawnNo = (Math.floor(Math.random()*8));
-			console.log(catSpawnNo);
 			spawnCat($spawnArray[catSpawnNo]);
 			totalSpawnNo++;
 			}
@@ -146,8 +149,19 @@ function spawnCat($template) {
 	
 	var $activeCat = $template.clone().appendTo($('body'))
 		.removeClass("invisible").addClass("active-cat")
-		.animate({ left: "45%", top: "40%"}, 
-		         { duration: 10000, complete: youdied });		
+		.animate({ left: "43%", top: "41%"}, 10000, function(){
+			console.log(this);
+			$this = $(this);
+			$this.find('.cat-image').css({
+				"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+				"background-size": "100% 100%",
+				"background-repeat": "no-repeat"
+			})
+			$this.fadeOut(3000, function (){
+					$this.remove();
+				}) 
+			removeLife();
+		});		
 		
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
@@ -196,7 +210,28 @@ function catDie(phrase, cat) {
 	  		});
 }
 
-//FUNCTION TO DISPLAY IF CAT REACHES YOU
+//REMOVAL OF LIVES AND PLAYER LOSE FUNCTION TO DISPLAY IF CAT REACHES YOU
+
+function removeLife() {
+	if ($lifeThree.hasClass("gone") && $lifeTwo.hasClass("gone") && $lifeOne.hasClass("gone")) {
+		youdied();
+	} else if ($lifeTwo.hasClass("gone") && $lifeThree.hasClass("gone")) {
+		addGone($lifeOne);
+	} else if ($lifeThree.hasClass("gone")) {
+		addGone($lifeTwo);
+	} else {
+		addGone($lifeThree);
+	}
+}
+
+function addGone(life) {
+	life.css({
+		"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+		"background-size": "60px 60px"
+	})
+	.fadeOut(700).addClass("gone");
+}
+
 
 function youdied() {
 	$gameOver = $(".game-over");
@@ -252,6 +287,10 @@ $('.game-over').on('click', function (){
 		});		
 	});
 	$gameOver.removeClass('visible');
+	$('.lives').removeClass('gone').fadeIn(400).css({
+		"background-image": "url('http://diysolarpanelsv.com/images/clipart-nail-head-png-images-28.png')",
+		"bakground-size": "80px 80px"
+	})
 });
 
 // WIN GAME
