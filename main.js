@@ -131,7 +131,7 @@ function timer () {
 				catRate = 2000;
 			if (totalSpawnNo >= 30)
 				catRate = 200;
-			if (totalSpawnNo === 55) {
+			if (totalSpawnNo === 65) {
 				breakvar = true;
 				spawnBoss();
 			} else {
@@ -194,17 +194,17 @@ function spawnCat($template) {
 				removeLife();
 					}		
 			})
+			.fadeOut(800)
+			.delay(800)
+			.fadeIn(800)
+			.delay(600)
 			.fadeOut(600)
 			.delay(600)
 			.fadeIn(600)
 			.delay(600)
 			.fadeOut(600)
-			.delay(600)
-			.fadeIn(600)
-			.delay(600)
-			.fadeOut(600)
-			.delay(600)
-			.fadeIn(800);
+			.delay(400)
+			.fadeIn(400);
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
 	}
