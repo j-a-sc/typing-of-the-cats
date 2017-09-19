@@ -156,7 +156,8 @@ function spawnCat($template) {
 				"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
 				"background-size": "100% 100%",
 				"background-repeat": "no-repeat"
-			})
+			});
+			$this.find('.phrase-holder').addClass('invisible');
 			$this.fadeOut(3000, function (){
 					$this.remove();
 				}) 
@@ -181,6 +182,7 @@ function spawnBoss () {
 		.fadeOut(500).delay(100)
 		.fadeIn(500).delay(100)
 		.fadeOut(500, function() {
+			$('.life-counter').fadeOut(1000);
 			$bossCat = $('.boss-cat');
 			$bossCat.addClass('active-cat').fadeIn(2000);
 			$('.boss-cat').animate({left: "65%"}, 96000, function(){
@@ -289,7 +291,7 @@ $('.game-over').on('click', function (){
 	$gameOver.removeClass('visible');
 	$('.lives').removeClass('gone').fadeIn(400).css({
 		"background-image": "url('http://diysolarpanelsv.com/images/clipart-nail-head-png-images-28.png')",
-		"bakground-size": "80px 80px"
+		"background-size": "80px 80px"
 	})
 });
 
