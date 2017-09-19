@@ -18,9 +18,13 @@ var $topMiddleCat = $(".top-middle-cat");
 var $leftMiddleCat = $(".middle-left-cat");
 var $rightMiddleCat = $(".middle-right-cat");
 var $bottomMiddleCat = $(".bottom-middle-cat");
+var $ninjaLeft = $(".ninja-left");
+var $ninjaRight = $(".ninja-right");
+
 var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
                   $bottomLeftCat, $topMiddleCat, $leftMiddleCat,
-                  $rightMiddleCat, $bottomMiddleCat ];
+                  $rightMiddleCat, $bottomMiddleCat, $ninjaLeft,
+                  $ninjaRight ];
 var catRate = 2400;
 
 // PHRASE ARRAY
@@ -99,7 +103,7 @@ var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
 				   "YEP", "YIKES", "YOGURT", "YUPPIEVILLE", "ZEALOUS", "ZIGZAGZOOP", "ZOMBIE",
 				   "ZOOLOGY", "ZUCCHINI", "ZOO", "SPARTA", "SPARTAN", "ADAM", "DOM", "JACK", "PARAS",
 				   "SEB", "JENNY", "CHRISTIAN", "ALISON", "NIALL", "JEMIMA", "LUCY", "KEIR", "MASH",
-				   "LUKE", "SOPHIE", "KARL", "GEORGE", "PRI", "BRIAN", "KLEIN", "HENRY"
+				   "LUKE", "SOPHIE", "KARL", "GEORGE", "PRI", "BRIAN", "KLEIN", "HENRY", "SKIN"
 
 
 
@@ -117,21 +121,23 @@ function timer () {
 	setTimeout( function () {
 		if ( breakvar === false ) {
 			
-			if (totalSpawnNo >= 5)
-				catRate = 2200;
 			if (totalSpawnNo >= 10)
-				catRate = 2100;
+				catRate = 2200;
+			// if (totalSpawnNo >= 10)
+			// 	catRate = 2100;
 			if (totalSpawnNo >= 15)
-				catRate = 2000;
+				catRate = 2050;
 			if (totalSpawnNo >= 20)
-				catRate = 1900;
+				catRate = 2000;
 			if (totalSpawnNo >= 30)
 				catRate = 200;
-			if (totalSpawnNo === 50) {
+			if (totalSpawnNo === 55) {
 				breakvar = true;
 				spawnBoss();
 			} else {
-			var catSpawnNo = (Math.floor(Math.random()*8));
+			var catSpawnNo = (Math.floor(Math.random()*9));
+			//SET CAT SPAWN FOR TESTING
+			//var catSpawnNo = 9;  
 			spawnCat($spawnArray[catSpawnNo]);
 			totalSpawnNo++;
 			}
@@ -146,36 +152,73 @@ function timer () {
 function spawnCat($template) {
 
 	var phraseNo = Math.floor(Math.random()*phraseArray.length);
-	
-	var $activeCat = $template.clone().appendTo($('body'))
-		.removeClass("invisible").addClass("active-cat")
-		.animate({ left: "43%", top: "41%"}, 10000, function(){
-			console.log(this);
-			$this = $(this);
-			$this.find('.cat-image').css({
-				"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
-				"background-size": "100% 100%",
-				"background-repeat": "no-repeat"
+
+// NORMAL CAT SPAWNER
+	if ( $template.hasClass("cat")) {
+		var $activeCat = $template.clone().appendTo($('body'))
+			.removeClass("invisible").addClass("active-cat")
+			.animate({ left: "43%", top: "41%"}, 10000, function(){
+				console.log(this);
+				$this = $(this);
+				$this.find('.cat-image').css({
+					"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+					"background-size": "100% 100%",
+					"background-repeat": "no-repeat"
+				});
+				$this.find('.phrase-holder').addClass('invisible');
+				$this.fadeOut(3000, function (){
+						$this.remove();
+					}) 
+				removeLife();
 			});
-			$this.find('.phrase-holder').addClass('invisible');
-			$this.fadeOut(3000, function (){
-					$this.remove();
-				}) 
-			removeLife();
-		});		
-		
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
-
+		
+// NINJA CAT SPAWNER		
+	} else if ( $template.hasClass("ninja")) {
+		var $activeCat = $template.clone().appendTo($('body'))
+			.removeClass("invisible").addClass("active-cat")
+			.animate({ left: "43%", top: "41%"},
+				{ duration: 8000, queue: false, complete: function() {
+				console.log(this);
+				$this = $(this);
+				$this.find('.ninja-cat-image').css({
+					"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+					"background-size": "100% 100%",
+					"background-repeat": "no-repeat"
+				});
+				$this.find('.phrase-holder').addClass('invisible');
+				$this.fadeOut(3000, function (){
+						$this.remove();
+					}) 
+				removeLife();
+					}		
+			})
+			.fadeOut(600)
+			.delay(600)
+			.fadeIn(600)
+			.delay(600)
+			.fadeOut(600)
+			.delay(600)
+			.fadeIn(600)
+			.delay(600)
+			.fadeOut(600)
+			.delay(600)
+			.fadeIn(800);
+		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
+		$phrase.html(phraseArray[phraseNo]);
+	}
 }
+
 
 function spawnBoss () {
 	$playerModel = $(".player-model");
 	$playerModel.animate({left: "+=500px", top: "-=100px"}, 500, function () {
 		$cat = $(".active-cat .cat-phrase").parent().parent();
-		$cat.stop().fadeOut(100);
+		$cat.stop(true, false).fadeOut(100);
 		console.log($bossBanner);
 		$bossBanner
+		.delay(400)
 		.fadeIn(500).delay(100)
 		.fadeOut(500).delay(100)
 		.fadeIn(500).delay(100)
@@ -197,7 +240,7 @@ function catDie(phrase, cat) {
 	phrase.css({
 	  			"visibility": "hidden"
 	  		});
-	 		cat.stop();
+	 		cat.stop(true, false);
 	 		if (cat.hasClass("boss-cat")) {
 	 			youWin();
 	 		}
@@ -207,6 +250,14 @@ function catDie(phrase, cat) {
 	 		cat.find(".boss-image").css ({
 	 			"background-image": "url('Images/explosion.png')"
 	 		})
+	 		cat.find(".ninja-cat-image").css ({
+	 			"background-image": "url('Images/explosion.png')",
+	 		})
+	 		// cat.find("###NEWNINJAID###").css ({
+	 		// 	"opacity": "1",
+	 		// 	"display": "block",
+	 		// 	"visibility": "visible"
+	 		//})
 	  		cat.fadeOut(2000, function () {
 	  			cat.remove();
 	  		});

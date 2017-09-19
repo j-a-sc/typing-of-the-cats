@@ -1,7 +1,7 @@
 body {
 	background-image: url("Images/spacebg.png");
 	margin: 0;
-	background-size: 100% 840px;
+	background-size: 100% 940px;
 	background-repeat: no-repeat;\
 	overflow: hidden;
 }
@@ -33,7 +33,7 @@ body {
 
 .splash-screen {
 	background-image: url("Images/splashbg.jpg");
-	height: 840px;
+	height: 940px;
 	width: 100%;
 	z-index: 1000;
 	position: absolute;
@@ -54,6 +54,7 @@ body {
 	margin: 0 auto;
 	top: 50px;
 	position: relative;
+	box-shadow: 4px 4px 11px 6px rgba(0,0,0,0.6);
 
 }
 
@@ -81,7 +82,7 @@ body {
 	width: 250px;
 	position: relative;
 	margin: 0 auto;
-	
+	box-shadow: 4px 4px 11px 4px rgba(0,0,0,0.6);
 	top: 55px;
 	font-family: 'Audiowide';
 	color: white;
@@ -137,6 +138,20 @@ body {
 	left: 45%;
 }
 
+.ninja {
+	height: 200px;
+	width: 200px;
+	position: absolute;
+	top: 40%;
+}
+.ninja-left {
+	left: 0;
+}
+
+.ninja-right{
+	right: 0;
+}
+
 .invisible {
 	visibility: hidden;
 }
@@ -172,6 +187,12 @@ body {
 	height: 150px;
 }
 
+.ninja-cat-image {
+	background-image: url("https://i.pinimg.com/originals/1e/1c/bb/1e1cbb5315dd38bc85d4619f4141fb11.png");
+	background-size: 100% 100%;
+	height:150px;
+}
+
 .game-over {
 	color: red;
 	position: absolute;
@@ -189,10 +210,16 @@ body {
 	padding: 20px 0 0 20px;
 	visibility: hidden;
 	z-index: 10000;
+	box-shadow: 4px 4px 11px 1px rgba(0,0,0,0.6);
 }
 
 .play-again {
+	border-radius: 50px;
+	border: 5px black solid;
+	width: 200px;
+	margin: 30px auto;
 	font-size: 30px;
+	box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.6);
 }
 
 .visible {
