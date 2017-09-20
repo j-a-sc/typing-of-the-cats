@@ -25,7 +25,7 @@ var $squadLeft = $(".squad-left");
 var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
                   $bottomLeftCat, $topMiddleCat, $leftMiddleCat,
                   $rightMiddleCat, $bottomMiddleCat, $ninjaLeft,
-                  $ninjaRight ];
+                  $ninjaRight, $squadLeft, $squadLeft, $squadLeft];
 var catRate = 2800;
 
 // PHRASE ARRAY
@@ -166,7 +166,7 @@ function spawnCat($template) {
 	if ( $template.hasClass("cat")) {
 		var $activeCat = $template.clone().appendTo($('body'))
 			.removeClass("invisible").addClass("active-cat")
-			.animate({ left: "43%", top: "41%"}, 10000, function(){
+			.animate({ left: "43%", top: "41%"}, 12000, function(){
 				console.log(this);
 				$this = $(this);
 				$this.find('.cat-image').css({
@@ -201,42 +201,39 @@ function spawnCat($template) {
 						$this.remove();
 					}) 
 				removeLife();
-					}		
+				}		
 			})
-			.fadeOut(800)
-			.delay(800)
-			.fadeIn(800)
-			.delay(600)
-			.fadeOut(600)
-			.delay(600)
-			.fadeIn(600)
-			.delay(600)
-			.fadeOut(600)
-			.delay(400)
-			.fadeIn(400);
+			.fadeOut(800).delay(800).fadeIn(800).delay(600)
+			.fadeOut(600).delay(600).fadeIn(600).delay(600)
+			.fadeOut(600).delay(400).fadeIn(400);
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
-	}
 	// SPAWN SQUAD CATS
-// 	else if ( $template.hasClass("squad")) {
-
-// 		var $activeCat = $(".squad .invisible").clone().appendTo($('body'))
-// 					.removeClass("invisible").addClass("active-cat")
-// 					.animate({ left: "43%", top: "41%"}, 12000, function(){
-// 						console.log(this);
-// 						$this = $(this);
-// 						$this.find('.cat-image').css({
-// 							"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
-// 							"background-size": "100% 100%",
-// 							"background-repeat": "no-repeat"
-// 						});
-// 						$this.find('.phrase-holder').addClass('invisible');
-// 						$this.fadeOut(3000, function (){
-// 								$this.remove();
-// 							}) 
-// 						removeLife();
-// 					});
-// 	}
+	} else if ( $template.hasClass("squad")) {
+		var $activeCat = $(".stemplate").clone().appendTo($('body'))
+					.removeClass("stemplate")
+					.addClass("active-cat")
+					.removeClass("invisible")
+					.animate({ left: "46%", top: "44%"}, 12000, function(){
+						console.log($activeCat);
+						$this = $(this);
+						$this.find('.squad-cat-image').css({
+							"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+							"background-size": "60% 60%",
+							"background-repeat": "no-repeat"
+						});
+						$this.find('.phrase-holder').addClass('invisible');
+						$this.fadeOut(1000, function (){
+								$this.remove();
+							}) 
+						removeLife();
+					});
+		var $phrase = $activeCat.find(".phrase-holder .cat-phrase")
+		for (i = 0; i < $phrase.length; i++) {
+			var squadPhraseNo = Math.floor(Math.random()*squadPhraseArray.length);
+			$phrase.eq(i).html(squadPhraseArray[squadPhraseNo]);
+		}
+	}
 };
 
 
@@ -258,7 +255,7 @@ function spawnBoss () {
 			$bossCat = $('.boss-cat');
 			$bossCat.addClass('active-cat').fadeIn(2000);
 			$('.boss-cat').animate({left: "65%"}, 18000, function(){
-				youdied();
+				youDied();
 			})
 		})
 		})
@@ -275,19 +272,22 @@ function catDie(phrase, cat) {
 	 		}
 	 		cat.find(".cat-image").css ({
 	 			"background-image": "url('Images/explosion.png')"
-	 		})
+	 		});
 	 		cat.find(".boss-image").css ({
 	 			"background-image": "url('Images/explosion.png')"
-	 		})
+	 		});
 	 		cat.find(".ninja-cat-image").css ({
-	 			"background-image": "url('Images/explosion.png')",
-	 		})
+	 			"background-image": "url('Images/explosion.png')"
+	 		});
 	 		// cat.find("###NEWNINJAID###").css ({
 	 		// 	"opacity": "1",
 	 		// 	"display": "block",
 	 		// 	"visibility": "visible"
 	 		//})
-	  		cat.fadeOut(2000, function () {
+	 		cat.find(".squad-cat-image").css ({
+	 			"background-image": "url('Images/explosion.png')"
+	 		});
+	  		cat.fadeOut(1600, function () {
 	  			cat.remove();
 	  		});
 }
@@ -296,7 +296,7 @@ function catDie(phrase, cat) {
 
 function removeLife() {
 	if ($lifeThree.hasClass("gone") && $lifeTwo.hasClass("gone") && $lifeOne.hasClass("gone")) {
-		youdied();
+		youDied();
 	} else if ($lifeTwo.hasClass("gone") && $lifeThree.hasClass("gone")) {
 		addGone($lifeOne);
 		catRate += 500;
@@ -318,7 +318,7 @@ function addGone(life) {
 }
 
 
-function youdied() {
+function youDied() {
 	$gameOver = $(".game-over");
 	$gameOver.addClass('visible');
 	console.log($gameOver);
@@ -346,7 +346,6 @@ $(document).keydown(function(event) {
 	var keypress = String.fromCharCode(event.keyCode);
   	$(".active-cat .cat-phrase").each(function (_, phrase) {
   		var $phrase = $(phrase);
-  		console.log($phrase);
   		var string = $phrase.text();
   		var $cat = $phrase.parent().parent();
 		if (keypress === string.charAt(0) )

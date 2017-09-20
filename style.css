@@ -157,11 +157,10 @@ body {
 	height: 200px;
 	width: 200px;
 	position: absolute;
-	visibility: hidden;   /* REMEMBER TO CHANGE THIS TOMORROW */
 }
 
 .squad-right {
-	right: 20%;
+	right: 12%;
 	top: 0;
 }
 
@@ -172,22 +171,23 @@ body {
 
 .squad-middle-left {
 	left: 0;
-	top: 30%;
+	top: 26%;
 }
 
 .squad-middle-right {
-	right: 0;
-	top: 30%;
+    right: -7%;
+    top: 25%;
 }
 
 .squad-top {
 	top: 0;
-	left: 45%;
+	left: 47%;
 }
 
 .invisible {
 	visibility: hidden;
 }
+
 .new-cat {
 	background-color: yellow;
 	height: 100px;
