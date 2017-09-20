@@ -160,7 +160,7 @@ function timer () {
 			// 	catRate = 2300;
 			if (totalSpawnNo >= 25)
 				catRate = 200;
-			if (totalSpawnNo === 60) {
+			if (totalSpawnNo === 0) {
 				breakvar = true;
 				spawnBoss();
 			} else {
@@ -190,7 +190,7 @@ function spawnCat($template) {
 				console.log(this);
 				$this = $(this);
 				$this.find('.cat-image').css({
-					"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+					"background-image": "url('Images/playerdead.png')",
 					"background-size": "100% 100%",
 					"background-repeat": "no-repeat"
 				});
@@ -215,7 +215,7 @@ function spawnCat($template) {
 				console.log(this);
 				$this = $(this);
 				$this.find('.ninja-cat-image').css({
-					"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+					"background-image": "url('Images/playerdead.png')",
 					"background-size": "100% 100%",
 					"background-repeat": "no-repeat"
 				});
@@ -242,7 +242,7 @@ function spawnCat($template) {
 						console.log($activeCat);
 						$this = $(this);
 						$this.find('.squad-cat-image').css({
-							"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+							"background-image": "url('Images/playerdead.png')",
 							"background-size": "60% 60%",
 							"background-repeat": "no-repeat"
 						});
@@ -343,7 +343,7 @@ function removeLife() {
 
 function addGone(life) {
 	life.css({
-		"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+		"background-image": "url('Images/playerdead.png')",
 		"background-size": "60px 60px"
 	})
 	.fadeOut(700).addClass("gone");
@@ -407,7 +407,7 @@ $('.game-over').on('click', function (){
 	});
 	$gameOver.removeClass('visible');
 	$('.lives').removeClass('gone').fadeIn(400).css({
-		"background-image": "url('http://diysolarpanelsv.com/images/clipart-nail-head-png-images-28.png')",
+		"background-image": "url('Images/lives.png')",
 		"background-size": "80px 80px"
 	})
 });
