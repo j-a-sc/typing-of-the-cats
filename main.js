@@ -20,12 +20,13 @@ var $rightMiddleCat = $(".middle-right-cat");
 var $bottomMiddleCat = $(".bottom-middle-cat");
 var $ninjaLeft = $(".ninja-left");
 var $ninjaRight = $(".ninja-right");
+var $squadLeft = $(".squad-left");
 
 var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
                   $bottomLeftCat, $topMiddleCat, $leftMiddleCat,
                   $rightMiddleCat, $bottomMiddleCat, $ninjaLeft,
                   $ninjaRight ];
-var catRate = 2400;
+var catRate = 2800;
 
 // PHRASE ARRAY
 var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
@@ -104,10 +105,18 @@ var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
 				   "ZOOLOGY", "ZUCCHINI", "ZOO", "SPARTA", "SPARTAN", "ADAM", "DOM", "JACK", "PARAS",
 				   "SEB", "JENNY", "CHRISTIAN", "ALISON", "NIALL", "JEMIMA", "LUCY", "KEIR", "MASH",
 				   "LUKE", "SOPHIE", "KARL", "GEORGE", "PRI", "BRIAN", "KLEIN", "HENRY", "SKIN"
-
-
-
 				   ];
+
+squadPhraseArray = ["CAT", "AAH", "ACE", "AGE", "AHA", "ARF", "AXE", "BUG", "BAM", "AYE", "BAG", "BOP",
+					"BEE", "BYE", "BOO", "CUR", "EGG", "FAB", "FEZ", "FIB", "FUR", "EYE", "EWE", "GAS",
+					"GNU", "GOA", "GYM", "HAT", "HMM", "HOT", "HOG", "FLU", "GUM", "HAY", "ZOG", "HEX",
+					"ILK", "IRK", "JAM", "JAR", "JET", "JUS", "LOG", "LEY", "LEG", "LAW", "LOW", "LYE",
+					"MIC", "MUD", "OIL", "OBI", "NAW", "NOD", "OHM", "OMM", "NOM", "PAW", "WIG", "WAY",
+					"PIG", "OWL", "POP", "POT", "POD", "POX", "PSI", "PUN", "PUB", "RAD", "WON", "WOT",
+					"RAT", "REX", "RAW", "RED", "NOO", "SUM", "SUN", "SOY", "SPA", "TOG", "YEA", "YAY",
+					"TOM", "TOO", "TSK", "UMM", "TUX", "VAN", "VOW", "WAT", "WOK", "WEB", "URN", "TOE",
+					"WET", "DRY", "WAX", "YAK", "YOB", "ZAP", "ZAG", "ZEN", "ZYX", "ZZZ", "ZOO", "PAM"
+					];
 
 // GAME STARTING FUNCTION
 
@@ -122,22 +131,22 @@ function timer () {
 		if ( breakvar === false ) {
 			
 			if (totalSpawnNo >= 10)
-				catRate = 2200;
+				catRate = 2600;
 			// if (totalSpawnNo >= 10)
 			// 	catRate = 2100;
 			if (totalSpawnNo >= 15)
-				catRate = 2050;
+				catRate = 2450;
 			if (totalSpawnNo >= 20)
-				catRate = 2000;
-			if (totalSpawnNo >= 30)
+				catRate = 2300;
+			if (totalSpawnNo >= 25)
 				catRate = 200;
-			if (totalSpawnNo === 65) {
+			if (totalSpawnNo === 30) {
 				breakvar = true;
 				spawnBoss();
 			} else {
-			var catSpawnNo = (Math.floor(Math.random()*9));
+			var catSpawnNo = (Math.floor(Math.random()*10));
 			//SET CAT SPAWN FOR TESTING
-			//var catSpawnNo = 9;  
+			//var catSpawnNo = 10;  
 			spawnCat($spawnArray[catSpawnNo]);
 			totalSpawnNo++;
 			}
@@ -208,7 +217,27 @@ function spawnCat($template) {
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
 	}
-}
+	// SPAWN SQUAD CATS
+// 	else if ( $template.hasClass("squad")) {
+
+// 		var $activeCat = $(".squad .invisible").clone().appendTo($('body'))
+// 					.removeClass("invisible").addClass("active-cat")
+// 					.animate({ left: "43%", top: "41%"}, 12000, function(){
+// 						console.log(this);
+// 						$this = $(this);
+// 						$this.find('.cat-image').css({
+// 							"background-image": "url('https://cdn.pixabay.com/photo/2016/03/31/15/23/explosion-1293246_960_720.png')",
+// 							"background-size": "100% 100%",
+// 							"background-repeat": "no-repeat"
+// 						});
+// 						$this.find('.phrase-holder').addClass('invisible');
+// 						$this.fadeOut(3000, function (){
+// 								$this.remove();
+// 							}) 
+// 						removeLife();
+// 					});
+// 	}
+};
 
 
 function spawnBoss () {
@@ -352,7 +381,7 @@ function youWin() {
 	$(".main-title").html("Well Done!");
 	$(".instructions").html("Thanks to your heroic efforts Boss cat has been defeated! <br/><br/>"
 		+ "With the tyranny of Boss cat at an end, his cute yet deadly legions are scattered to the winds "
-		+ "and robots throughout the galaxy can live in peace once more, without the constant threat of "
+		+ "and people throughout the galaxy can live in peace once more, without the constant threat of "
 		+ "the pan-galactic feline war machine <br/><br/>"
 		+ "Congratulations hero, and thank you for playing!");
 	$(".start-button").hide();
