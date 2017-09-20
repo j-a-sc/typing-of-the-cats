@@ -1,3 +1,23 @@
+var backgroundSound = new Audio('Sounds/backgroundloop.wav')
+    backgroundSound.loop = true;
+    backgroundSound.volume = 0.2;
+    backgroundSound.play();
+
+var laserSound = new Audio('Sounds/laser.wav');
+var meow1 = new Audio('Sounds/meow1.wav');
+meow1.volume = 0.3;
+var meow2 = new Audio('Sounds/meow2.wav');
+var meow3 = new Audio('Sounds/meow3.wav');
+var meow4 = new Audio('Sounds/meow4.wav');
+var meow5 = new Audio('Sounds/meow4.wav');
+var bossMeow = new Audio('Sounds/bigmeow.wav');
+bossMeow.volume = 1
+var bossMusic = new Audio('Sounds/bossmusic.mp3');
+
+
+
+var catSoundArray = [meow1, meow2, meow3, meow4, meow5];
+
 // IMPORTANT VARS
 var breakvar = false;
 var $startButton = $(".start-button");
@@ -25,7 +45,7 @@ var $squadLeft = $(".squad-left");
 var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
                   $bottomLeftCat, $topMiddleCat, $leftMiddleCat,
                   $rightMiddleCat, $bottomMiddleCat, $ninjaLeft,
-                  $ninjaRight, $squadLeft, $squadLeft, $squadLeft];
+                  $ninjaRight, $squadLeft, $squadLeft];
 var catRate = 2800;
 
 // PHRASE ARRAY
@@ -140,7 +160,7 @@ function timer () {
 			// 	catRate = 2300;
 			if (totalSpawnNo >= 25)
 				catRate = 200;
-			if (totalSpawnNo === 48) {
+			if (totalSpawnNo === 3) {
 				breakvar = true;
 				spawnBoss();
 			} else {
@@ -179,6 +199,9 @@ function spawnCat($template) {
 						$this.remove();
 					}) 
 				removeLife();
+				var catSoundNo = Math.floor(Math.random()*catSoundArray.length);
+		 		catSoundArray[catSoundNo].play();
+		 		console.log('playing cat sound');
 			});
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
@@ -253,15 +276,21 @@ function spawnBoss () {
 		.fadeOut(500, function() {
 			$('.life-counter').fadeOut(1000);
 			$bossCat = $('.boss-cat');
-			$bossCat.addClass('active-cat').fadeIn(2000);
+			$bossCat.addClass('active-cat').fadeIn(2000, function (){
+				// bossMeow.loop = true;
+				bossMeow.play();
+				backgroundSound.pause();
+				bossMusic.play();
+			});
 			$('.boss-cat').animate({left: "65%"}, 18000, function(){
+				bossMusic.pause();
 				youDied();
 			})
 		})
 		})
 };
-// PERFORMS CAT EXPLOSION ANIMATION AND REMOVES ELEMENT
 
+// PERFORMS CAT EXPLOSION ANIMATION AND REMOVES ELEMENT
 function catDie(phrase, cat) {
 	phrase.css({
 	  			"visibility": "hidden"
@@ -288,7 +317,9 @@ function catDie(phrase, cat) {
 	 			"background-image": "url('Images/explosion.png')"
 	 		});
 	  		cat.fadeOut(1600, function () {
-	  			cat.remove();
+	  			$(this).remove();
+	  			console.log('removing cat')
+	  			console.log($(this));
 	  		});
 }
 
@@ -328,7 +359,9 @@ function youDied() {
 	$playerDead.hide().fadeIn(700).delay(500).fadeOut(3000);
 	$cat = $(".active-cat .cat-phrase").parent().parent();
 	$cat.stop().fadeOut(2000, function () {
+		$cat.remove();
 	});
+	backgroundSound.play();
 
 }
 
@@ -348,10 +381,11 @@ $(document).keydown(function(event) {
   		var $phrase = $(phrase);
   		var string = $phrase.text();
   		var $cat = $phrase.parent().parent();
-		if (keypress === string.charAt(0) )
+		if (keypress === string.charAt(0) ) {
 	  		$phrase.text(string = string.substring(1));
-
-	  	if (string === "") {
+	  		laserSound.cloneNode(true).play();
+	  		console.log('lasernoise');
+	  	} if (string === "") {
 	  		catDie($phrase, $cat);
 	  	}
   	});
@@ -380,7 +414,8 @@ $('.game-over').on('click', function (){
 // WIN GAME
 
 function youWin() {
-	$(".main-title").html("Well Done!");
+	bossMeow.pause();
+	$(".main-title").html("PURRRRFECT VICTORY!");
 	$(".instructions").html("Thanks to your heroic efforts Boss cat has been defeated! <br/><br/>"
 		+ "With the tyranny of Boss cat at an end, his cute yet deadly legions are scattered to the winds "
 		+ "and people throughout the galaxy can live in peace once more, without the constant threat of "
