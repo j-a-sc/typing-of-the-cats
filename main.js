@@ -160,7 +160,7 @@ function timer () {
 			// 	catRate = 2300;
 			if (totalSpawnNo >= 25)
 				catRate = 200;
-			if (totalSpawnNo === 0) {
+			if (totalSpawnNo === 60) {
 				breakvar = true;
 				spawnBoss();
 			} else {
@@ -283,7 +283,7 @@ function spawnBoss () {
 				backgroundSound.pause();
 				bossMusic.play();
 			});
-			$('.boss-cat').animate({left: "73%"}, 36000, function(){
+			$('.boss-cat').animate({left: "73%"}, 32000, function(){
 				bossMusic.pause();
 				youDied();
 			})
