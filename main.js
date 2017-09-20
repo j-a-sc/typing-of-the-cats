@@ -144,7 +144,7 @@ function startGame (){
 	timer();
 };
 
-// TIMELOOP THAT SPAWNS CATS EVERY catRate
+//TIMELOOP THAT SPAWNS CATS EVERY catRate
 
 function timer () {
 	setTimeout( function () {
@@ -160,7 +160,7 @@ function timer () {
 			// 	catRate = 2300;
 			if (totalSpawnNo >= 25)
 				catRate = 200;
-			if (totalSpawnNo === 3) {
+			if (totalSpawnNo === 60) {
 				breakvar = true;
 				spawnBoss();
 			} else {
@@ -186,7 +186,7 @@ function spawnCat($template) {
 	if ( $template.hasClass("cat")) {
 		var $activeCat = $template.clone().appendTo($('body'))
 			.removeClass("invisible").addClass("active-cat")
-			.animate({ left: "43%", top: "41%"}, 12000, function(){
+			.animate({ left: "43%", top: "44%"}, 12000, function(){
 				console.log(this);
 				$this = $(this);
 				$this.find('.cat-image').css({
@@ -210,8 +210,8 @@ function spawnCat($template) {
 	} else if ( $template.hasClass("ninja")) {
 		var $activeCat = $template.clone().appendTo($('body'))
 			.removeClass("invisible").addClass("active-cat")
-			.animate({ left: "43%", top: "41%"},
-				{ duration: 8000, queue: false, complete: function() {
+			.animate({ left: "43%", top: "44%"},
+				{ duration: 12000, queue: false, complete: function() {
 				console.log(this);
 				$this = $(this);
 				$this.find('.ninja-cat-image').css({
@@ -228,7 +228,8 @@ function spawnCat($template) {
 			})
 			.fadeOut(800).delay(800).fadeIn(800).delay(600)
 			.fadeOut(600).delay(600).fadeIn(600).delay(600)
-			.fadeOut(600).delay(400).fadeIn(400);
+			.fadeOut(600).delay(400).fadeIn(400).delay(400)
+			.fadeOut(300).delay(300).fadeIn(1000);
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
 	// SPAWN SQUAD CATS
@@ -237,7 +238,7 @@ function spawnCat($template) {
 					.removeClass("stemplate")
 					.addClass("active-cat")
 					.removeClass("invisible")
-					.animate({ left: "46%", top: "44%"}, 12000, function(){
+					.animate({ left: "46%", top: "47%"}, 12000, function(){
 						console.log($activeCat);
 						$this = $(this);
 						$this.find('.squad-cat-image').css({
@@ -262,7 +263,7 @@ function spawnCat($template) {
 
 function spawnBoss () {
 	$playerModel = $(".player-model");
-	$playerModel.animate({left: "+=500px", top: "-=100px"}, 500, function () {
+	$playerModel.animate({left: "91%", top: "50%"}, 500, function () {
 		$cat = $(".active-cat .cat-phrase").parent().parent();
 		$cat.stop(true, false).fadeOut(100);
 		console.log($bossBanner);
@@ -282,7 +283,7 @@ function spawnBoss () {
 				backgroundSound.pause();
 				bossMusic.play();
 			});
-			$('.boss-cat').animate({left: "65%"}, 18000, function(){
+			$('.boss-cat').animate({left: "73%"}, 36000, function(){
 				bossMusic.pause();
 				youDied();
 			})

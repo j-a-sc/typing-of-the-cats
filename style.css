@@ -8,11 +8,11 @@ body {
 
 .player-model {
 	background-image: url("Images/Blue-Robot.png");
-	height: 200px;
-	width: 200px;
-	background-size: 200px 200px;
+	height: 25%;
+	width: 25%;
+	background-size: 50% 90%;
 	position: absolute;
-	top: 63%;
+	top: 73%;
 	left: 50%;
 	margin: -100px -100px;
 	background-repeat: no-repeat;
