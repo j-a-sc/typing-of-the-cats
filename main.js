@@ -130,21 +130,21 @@ function timer () {
 	setTimeout( function () {
 		if ( breakvar === false ) {
 			
-			if (totalSpawnNo >= 10)
-				catRate = 2600;
+			if (totalSpawnNo >= 0)
+				catRate -= 40;
 			// if (totalSpawnNo >= 10)
 			// 	catRate = 2100;
-			if (totalSpawnNo >= 15)
-				catRate = 2450;
-			if (totalSpawnNo >= 20)
-				catRate = 2300;
+			// if (totalSpawnNo >= 15)
+			// 	catRate = 2450;
+			// if (totalSpawnNo >= 20)
+			// 	catRate = 2300;
 			if (totalSpawnNo >= 25)
 				catRate = 200;
-			if (totalSpawnNo === 30) {
+			if (totalSpawnNo === 48) {
 				breakvar = true;
 				spawnBoss();
 			} else {
-			var catSpawnNo = (Math.floor(Math.random()*10));
+			var catSpawnNo = (Math.floor(Math.random()*$spawnArray.length));
 			//SET CAT SPAWN FOR TESTING
 			//var catSpawnNo = 10;  
 			spawnCat($spawnArray[catSpawnNo]);
@@ -299,10 +299,13 @@ function removeLife() {
 		youdied();
 	} else if ($lifeTwo.hasClass("gone") && $lifeThree.hasClass("gone")) {
 		addGone($lifeOne);
+		catRate += 500;
 	} else if ($lifeThree.hasClass("gone")) {
 		addGone($lifeTwo);
+		catRate += 400;
 	} else {
 		addGone($lifeThree);
+		catRate += 200;
 	}
 }
 
