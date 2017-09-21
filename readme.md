@@ -14,9 +14,9 @@ The game works simply cloning the repo into your local machine
 
 `git clone git@github.com:jack-a-scott/javascript_game_project.git`
 
- and loading index.html in any modern browser. The game was made for Chrome but has been tested in Firefox and Safari.
+ and loading index.html in any modern browser. The game was made for Chrome but has also been tested in Firefox and Safari.
 
- The game is also accessible without cloning the repository at the address - 
+ The game is also accessible without cloning the repository at this address.
 
  [Game Link](https://jack-a-scott.github.io/javascript_game_project)
 
