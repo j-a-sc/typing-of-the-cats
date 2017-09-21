@@ -28,7 +28,6 @@ body {
 	left: 50%;
 	margin: -400px 0 0 -400px;
 	background-image: url("../Images/playerdead.png");
-	/*visibility: hidden;*/
 }
 
 .splash-screen {

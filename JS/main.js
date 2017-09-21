@@ -177,7 +177,6 @@ function spawnCat($template) {
 		var $activeCat = $template.clone().appendTo($('body'))
 			.removeClass("invisible").addClass("active-cat")
 			.animate({ left: "43%", top: "44%"}, 12000, function(){
-				console.log(this);
 				$this = $(this);
 				$this.find('.cat-image').css({
 					"background-image": "url('Images/playerdead.png')",
@@ -191,7 +190,6 @@ function spawnCat($template) {
 				removeLife();
 				var catSoundNo = Math.floor(Math.random()*catSoundArray.length);
 		 		catSoundArray[catSoundNo].play();
-		 		console.log('playing cat sound');
 			});
 		var $phrase = $activeCat.find(".phrase-holder .cat-phrase");
 		$phrase.html(phraseArray[phraseNo]);
@@ -202,7 +200,6 @@ function spawnCat($template) {
 			.removeClass("invisible").addClass("active-cat")
 			.animate({ left: "43%", top: "44%"},
 				{ duration: 12000, queue: false, complete: function() {
-				console.log(this);
 				$this = $(this);
 				$this.find('.ninja-cat-image').css({
 					"background-image": "url('Images/playerdead.png')",
@@ -229,7 +226,6 @@ function spawnCat($template) {
 					.addClass("active-cat")
 					.removeClass("invisible")
 					.animate({ left: "46%", top: "47%"}, 12000, function(){
-						console.log($activeCat);
 						$this = $(this);
 						$this.find('.squad-cat-image').css({
 							"background-image": "url('Images/playerdead.png')",
@@ -256,7 +252,6 @@ function spawnBoss () {
 	$playerModel.animate({left: "91%", top: "50%"}, 500, function () {
 		$cat = $(".active-cat .cat-phrase").parent().parent();
 		$cat.stop(true, false).fadeOut(100);
-		console.log($bossBanner);
 		$bossBanner
 		.delay(400)
 		.fadeIn(500).delay(100)
@@ -309,8 +304,6 @@ function catDie(phrase, cat) {
 	 		});
 	  		cat.fadeOut(1600, function () {
 	  			$(this).remove();
-	  			console.log('removing cat')
-	  			console.log($(this));
 	  		});
 }
 
@@ -343,7 +336,6 @@ function addGone(life) {
 function youDied() {
 	$gameOver = $(".game-over");
 	$gameOver.addClass('visible');
-	console.log($gameOver);
 	breakvar = true;
 	$('.player-model').addClass('player-dead');
 	$playerDead = $('.player-dead');
@@ -375,7 +367,6 @@ $(document).keydown(function(event) {
 		if (keypress === string.charAt(0) ) {
 	  		$phrase.text(string = string.substring(1));
 	  		laserSound.cloneNode(true).play();
-	  		console.log('lasernoise');
 	  	} if (string === "") {
 	  		catDie($phrase, $cat);
 	  	}
