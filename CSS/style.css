@@ -2,7 +2,7 @@ body {
 	background-image: url("../Images/spacebg.png");
 	margin: 0;
 	background-size: 100% 940px;
-	background-repeat: no-repeat;\
+	background-repeat: no-repeat;
 	overflow: hidden;
 }
 

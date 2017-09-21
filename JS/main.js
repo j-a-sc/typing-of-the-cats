@@ -1,18 +1,17 @@
-var backgroundSound = new Audio('../Sounds/backgroundloop.wav')
+var backgroundSound = new Audio('Sounds/backgroundloop.wav')
     backgroundSound.loop = true;
     backgroundSound.volume = 0.2;
     backgroundSound.play();
 
-var laserSound = new Audio('../Sounds/laser.wav');
-var meow1 = new Audio('../Sounds/meow1.wav');
-meow1.volume = 0.3;
-var meow2 = new Audio('../Sounds/meow2.wav');
-var meow3 = new Audio('../Sounds/meow3.wav');
-var meow4 = new Audio('../Sounds/meow4.wav');
-var meow5 = new Audio('../Sounds/meow4.wav');
-var bossMeow = new Audio('../Sounds/bigmeow.wav');
+var laserSound = new Audio('Sounds/laser.wav');
+var meow1 = new Audio('Sounds/meow1.wav');
+var meow2 = new Audio('Sounds/meow2.wav');
+var meow3 = new Audio('Sounds/meow3.wav');
+var meow4 = new Audio('Sounds/meow4.wav');
+var meow5 = new Audio('Sounds/meow4.wav');
+var bossMeow = new Audio('Sounds/bigmeow.wav');
 bossMeow.volume = 1
-var bossMusic = new Audio('../Sounds/bossmusic.mp3');
+var bossMusic = new Audio('Sounds/bossmusic.mp3');
 
 
 
@@ -190,7 +189,7 @@ function spawnCat($template) {
 				console.log(this);
 				$this = $(this);
 				$this.find('.cat-image').css({
-					"background-image": "url('../Images/playerdead.png')",
+					"background-image": "url('Images/playerdead.png')",
 					"background-size": "100% 100%",
 					"background-repeat": "no-repeat"
 				});
@@ -215,7 +214,7 @@ function spawnCat($template) {
 				console.log(this);
 				$this = $(this);
 				$this.find('.ninja-cat-image').css({
-					"background-image": "url('../Images/playerdead.png')",
+					"background-image": "url('Images/playerdead.png')",
 					"background-size": "100% 100%",
 					"background-repeat": "no-repeat"
 				});
@@ -242,7 +241,7 @@ function spawnCat($template) {
 						console.log($activeCat);
 						$this = $(this);
 						$this.find('.squad-cat-image').css({
-							"background-image": "url('../Images/playerdead.png')",
+							"background-image": "url('Images/playerdead.png')",
 							"background-size": "60% 60%",
 							"background-repeat": "no-repeat"
 						});
@@ -301,13 +300,13 @@ function catDie(phrase, cat) {
 	 			youWin();
 	 		}
 	 		cat.find(".cat-image").css ({
-	 			"background-image": "url('../Images/explosion.png')"
+	 			"background-image": "url('Images/explosion.png')"
 	 		});
 	 		cat.find(".boss-image").css ({
-	 			"background-image": "url('../Images/explosion.png')"
+	 			"background-image": "url('Images/explosion.png')"
 	 		});
 	 		cat.find(".ninja-cat-image").css ({
-	 			"background-image": "url('../Images/explosion.png')"
+	 			"background-image": "url('Images/explosion.png')"
 	 		});
 	 		// cat.find("###NEWNINJAID###").css ({
 	 		// 	"opacity": "1",
@@ -315,7 +314,7 @@ function catDie(phrase, cat) {
 	 		// 	"visibility": "visible"
 	 		//})
 	 		cat.find(".squad-cat-image").css ({
-	 			"background-image": "url('../Images/explosion.png')"
+	 			"background-image": "url('Images/explosion.png')"
 	 		});
 	  		cat.fadeOut(1600, function () {
 	  			$(this).remove();
@@ -343,7 +342,7 @@ function removeLife() {
 
 function addGone(life) {
 	life.css({
-		"background-image": "url('../Images/playerdead.png')",
+		"background-image": "url('Images/playerdead.png')",
 		"background-size": "60px 60px"
 	})
 	.fadeOut(700).addClass("gone");
@@ -407,7 +406,7 @@ $('.game-over').on('click', function (){
 	});
 	$gameOver.removeClass('visible');
 	$('.lives').removeClass('gone').fadeIn(400).css({
-		"background-image": "url('../Images/lives.png')",
+		"background-image": "url('Images/lives.png')",
 		"background-size": "80px 80px"
 	})
 });
