@@ -1,5 +1,5 @@
 body {
-	background-image: url("Images/spacebg.png");
+	background-image: url("../Images/spacebg.png");
 	margin: 0;
 	background-size: 100% 940px;
 	background-repeat: no-repeat;\
@@ -7,7 +7,7 @@ body {
 }
 
 .player-model {
-	background-image: url("Images/Blue-Robot.png");
+	background-image: url("../Images/Blue-Robot.png");
 	height: 25%;
 	width: 25%;
 	background-size: 50% 90%;
@@ -27,12 +27,12 @@ body {
 	top: 55%;
 	left: 50%;
 	margin: -400px 0 0 -400px;
-	background-image: url("Images/playerdead.png");
+	background-image: url("../Images/playerdead.png");
 	/*visibility: hidden;*/
 }
 
 .splash-screen {
-	background-image: url("Images/splashbg.jpg");
+	background-image: url("../Images/splashbg.jpg");
 	height: 940px;
 	width: 100%;
 	z-index: 1000;
@@ -215,19 +215,19 @@ body {
 }
 
 .cat-image {
-	background-image: url("Images/standard_cat.png");
+	background-image: url("../Images/standard_cat.png");
 	background-size: 100% 100%;
 	height: 150px;
 }
 
 .ninja-cat-image {
-	background-image: url("Images/ninjacat.png");
+	background-image: url("../Images/ninjacat.png");
 	background-size: 100% 100%;
 	height:150px;
 }
 
 .squad-cat-image {
-	background-image: url("Images/swarmcatling.png");
+	background-image: url("../Images/swarmcatling.png");
 	background-size: 60% 60%;
 	height: 150px;
 	background-repeat: no-repeat;
@@ -299,7 +299,7 @@ body {
 }
 
 .boss-image {
-	background-image: url('Images/bosscat.png');
+	background-image: url('../Images/bosscat.png');
 	height: 500px;
 	width: 500px;
 	background-size: 500px 500px;
@@ -307,7 +307,7 @@ body {
 }
 
 .gold {
-	background-image : url("Images/gold.jpg");
+	background-image : url("../Images/gold.jpg");
 }
 
 .red {
@@ -331,7 +331,7 @@ body {
 	display:inline-block;
 	height:50px;
 	width:50px;
-	background-image: url('Images/lives.png');
+	background-image: url('../Images/lives.png');
 	background-size: 80px 80px;
 	padding: 0 5px;
 	position: relative;
