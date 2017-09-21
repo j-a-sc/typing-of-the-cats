@@ -1,3 +1,16 @@
+// IMPORTANT VARS
+
+var breakvar = false;
+var $startButton = $(".start-button");
+var $splashScreen = $(".splash-screen");
+var totalSpawnNo = 0;
+var $bossBanner = $(".boss-banner");
+var $lifeOne = $("#1");
+var $lifeTwo = $("#2");
+var $lifeThree = $("#3");
+
+// SOUND FILES
+
 var backgroundSound = new Audio('Sounds/backgroundloop.wav')
     backgroundSound.loop = true;
     backgroundSound.volume = 0.2;
@@ -10,25 +23,11 @@ var meow3 = new Audio('Sounds/meow3.wav');
 var meow4 = new Audio('Sounds/meow4.wav');
 var meow5 = new Audio('Sounds/meow4.wav');
 var bossMeow = new Audio('Sounds/bigmeow.wav');
-bossMeow.volume = 1
 var bossMusic = new Audio('Sounds/bossmusic.mp3');
-
-
-
 var catSoundArray = [meow1, meow2, meow3, meow4, meow5];
 
-// IMPORTANT VARS
-var breakvar = false;
-var $startButton = $(".start-button");
-var $splashScreen = $(".splash-screen");
-var totalSpawnNo = 0;
-var $bossBanner = $(".boss-banner");
-var lives = 3;
-var $lifeOne = $("#1");
-var $lifeTwo = $("#2");
-var $lifeThree = $("#3");
-
 // CAT TEMPLATES
+
 var $topRightCat = $(".top-right-cat");
 var $topLeftCat = $(".top-left-cat");
 var $bottomRightCat = $(".bottom-right-cat");
@@ -47,7 +46,8 @@ var $spawnArray = [$topRightCat, $topLeftCat, $bottomRightCat,
                   $ninjaRight, $squadLeft, $squadLeft];
 var catRate = 2800;
 
-// PHRASE ARRAY
+// PHRASE ARRAYS
+
 var phraseArray = ["MARMOSET", "MONKEY", "ELEPHANT",
 				   "DISGUISED","JANE EYRE", "MARY SHELLEY",
 				   "GERMANY", "MAPLE TREE", "AARDVARK", "CAT RENDERING",
@@ -151,28 +151,19 @@ function timer () {
 			
 			if (totalSpawnNo >= 0)
 				catRate -= 40;
-			// if (totalSpawnNo >= 10)
-			// 	catRate = 2100;
-			// if (totalSpawnNo >= 15)
-			// 	catRate = 2450;
-			// if (totalSpawnNo >= 20)
-			// 	catRate = 2300;
 			if (totalSpawnNo >= 25)
 				catRate = 200;
 			if (totalSpawnNo === 60) {
 				breakvar = true;
 				spawnBoss();
 			} else {
-			var catSpawnNo = (Math.floor(Math.random()*$spawnArray.length));
-			//SET CAT SPAWN FOR TESTING
-			//var catSpawnNo = 10;  
+			var catSpawnNo = (Math.floor(Math.random()*$spawnArray.length)); 
 			spawnCat($spawnArray[catSpawnNo]);
 			totalSpawnNo++;
 			}
-
 			timer();
 		}
-	}, catRate)
+	}, catRate);
 };
 
 // CLONES TEMPLATE CAT AND PUTS NEW CAT INTO ANIMATION
