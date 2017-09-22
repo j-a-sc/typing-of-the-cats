@@ -150,10 +150,10 @@ function timer () {
 		if ( breakvar === false ) {
 			
 			if (totalSpawnNo >= 0)
-				catRate -= 40;
-			if (totalSpawnNo >= 25)
+				catRate -= 80;
+			if (totalSpawnNo >= 15)
 				catRate = 200;
-			if (totalSpawnNo === 60) {
+			if (totalSpawnNo === 45) {
 				breakvar = true;
 				spawnBoss();
 			} else {
