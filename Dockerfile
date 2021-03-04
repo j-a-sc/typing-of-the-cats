@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM scratch
 
 COPY src/ / 
 EXPOSE 3000
