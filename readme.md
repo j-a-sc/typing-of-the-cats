@@ -16,6 +16,11 @@ The game works simply cloning the repo into your local machine
 
  and loading index.html in any modern browser. The game was made for Chrome but has also been tested in Firefox and Safari.
 
+ #### Docker ####
+
+ `$ make`
+ will produce a docker hosting img
+
  The game is also accessible without cloning the repository at this address.
 
  [Game Link](https://jack-a-scott.github.io/javascript_game_project)
