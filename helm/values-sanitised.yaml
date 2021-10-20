@@ -1,0 +1,5 @@
+catImage: xxx
+
+ingress:
+  hostName: xxx
+  ingressClass: xxx

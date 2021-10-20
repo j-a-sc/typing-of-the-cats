@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "cat-ing"
+  labels:
+    app: cat
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClass }}
+spec:
+  rules:
+  - host: {{ .Values.ingress.hostName }}
+    http:
+      paths:
+      - backend:
+          serviceName: cat-service
+          servicePort: 3000
+

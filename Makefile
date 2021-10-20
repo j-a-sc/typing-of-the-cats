@@ -1,3 +1,23 @@
-all:
-	GOOS=linux GOARCH=amd64 go build -o src/webserver
-	docker build -t cat:latest .
+all: clean release deploy
+
+run:
+	cargo run
+
+release:
+	cargo build --release --target x86_64-unknown-linux-musl
+	docker build -t cat:release1 .
+
+clean:
+	rm -rf target
+
+###
+
+deploy: minikube helm-deploy
+
+minikube:
+	minikube start
+	eval $(minikube docker-env)
+
+helm-deploy:
+	minikube image load cat:release1
+	helm upgrade --install cat ./helm -f ./helm/values.yaml --namespace cat --create-namespace

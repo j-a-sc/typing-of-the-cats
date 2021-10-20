@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cat
+  labels:
+    app: cat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cat
+  template:
+    metadata:
+      labels:
+        app: cat
+    spec:
+      containers:
+      - name: cat
+        image: {{ .Values.catImage }}
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+          name: http
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 3000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "100m"
+            memory: "128Mi"
+

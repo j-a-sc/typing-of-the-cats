@@ -15,6 +15,9 @@ Docker desktop required,
 `$ make`
 will produce a container serving the game on port 3000.
 
+if running on osx may need to install a musl linker
+`$ brew install filosottile/musl-cross/musl-cross`
+
 ## intro ##
 
 The mighty space cat army has finally arrived at your planet, Earth!
