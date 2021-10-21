@@ -19,5 +19,4 @@ minikube:
 	eval $(minikube docker-env)
 
 helm-deploy:
-	minikube image load cat:release1
 	helm upgrade --install cat ./helm -f ./helm/values.yaml --namespace cat --create-namespace

@@ -7,7 +7,7 @@ use format_bytes::format_bytes;
 
 fn main() {
     let listener = TcpListener::bind("0.0.0.0:3000").unwrap();
-    println!("Serving on: 128.0.0.1:3000");
+    println!("Serving on: 0.0.0.0:3000");
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
@@ -46,7 +46,7 @@ fn handle_connection(mut stream: TcpStream) {
         contents.len(),
         contents
     );
-    match stream.write(&response){ 
+    match stream.write(&response) { 
         Ok(_) => println!("Handled Request!"),
         Err(e) => println!("Failed to write: {}", e)
     };

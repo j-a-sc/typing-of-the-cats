@@ -6,8 +6,8 @@ metadata:
     app: cat
 spec:
   hard:
-    pods: 3
-    requests.cpu: 1
-    requests.memory: 512Mi
-    limits.cpu: 1
-    limits.memory: 512Mi
+    pods: 30
+    requests.cpu: 8
+    requests.memory: 5000Mi
+    limits.cpu: 8
+    limits.memory: 5000Mi
