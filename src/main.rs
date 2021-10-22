@@ -20,21 +20,15 @@ fn handle_connection(mut stream: TcpStream) {
     stream.read(&mut buffer).unwrap();
 
     let buffer: Vec<&str> = str::from_utf8(&buffer).unwrap().split(" ").collect();
+    let partial_file_path = if buffer[1] == "/" { "/index.html" } else { buffer[1] };
 
-    println!("{}", buffer[1]);
-
-    let mut req = buffer[1];
-    if req == "/" {
-        req = "/index.html"
-    }
-
-    let filename = format!("static{}", req);
+    let full_file_path = format!("static{}", partial_file_path);
     let mut status_code = "HTTP/1.1 200 OK";
 
-    let contents = match fs::read(&filename) {
+    let contents = match fs::read(&full_file_path) {
         Ok(contents) => contents,
         Err(e) => {
-            println!("{} not found!\n {}", &filename, e);
+            println!("{} not found!\n {}", &full_file_path, e);
             status_code = "HTTP/1.1 404 NOT FOUND";
             fs::read("static/404.html").unwrap()
         }
